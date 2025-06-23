@@ -1,0 +1,329 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Name": "HomeScreen",
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "homeBackground",
+            "Width": 240,
+            "Height": 320,
+            "RelativeFilename": "background_start.png"
+          },
+          {
+            "Type": "Button",
+            "Name": "startBtn",
+            "X": 70,
+            "Y": 146,
+            "Width": 100,
+            "Height": 28,
+            "Pressed": "start-button-game-nhan.png",
+            "Released": "start-button-game.png"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "startBtn"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "North",
+              "ActionComponent": "GamePlayScreen"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "GamePlayScreen",
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "gamplayBackground",
+            "Width": 240,
+            "Height": 320,
+            "RelativeFilename": "background_start2.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "role",
+            "X": 20,
+            "Y": 215,
+            "Width": 199,
+            "Height": 3,
+            "RelativeFilename": "rope.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "egg1",
+            "X": 110,
+            "Y": 245,
+            "Width": 20,
+            "Height": 21,
+            "RelativeFilename": "egg1.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "egg2",
+            "X": 60,
+            "Y": 275,
+            "Width": 20,
+            "Height": 21,
+            "RelativeFilename": "egg2.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "egg3",
+            "X": 60,
+            "Y": 275,
+            "Width": 20,
+            "Height": 21,
+            "RelativeFilename": "egg3.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "egg4",
+            "X": 60,
+            "Y": 275,
+            "Width": 20,
+            "Height": 21,
+            "RelativeFilename": "egg4.png"
+          },
+          {
+            "Type": "Button",
+            "Name": "homeBtn",
+            "X": 194,
+            "Width": 25,
+            "Height": 26,
+            "Pressed": "homeBtn.png",
+            "Released": "homeBtn.png"
+          },
+          {
+            "Type": "Button",
+            "Name": "pauseBtn",
+            "X": 169,
+            "Y": 1,
+            "Width": 25,
+            "Height": 26,
+            "Pressed": "playButton.png",
+            "Released": "pauseButton.png"
+          },
+          {
+            "Type": "Button",
+            "Name": "replayBtn",
+            "X": 133,
+            "Y": 1,
+            "Width": 25,
+            "Height": 25,
+            "Pressed": "replayBtn.png",
+            "Released": "replayBtn.png"
+          },
+          {
+            "Type": "Button",
+            "Name": "volumeBtn",
+            "X": 108,
+            "Width": 25,
+            "Height": 26,
+            "Pressed": "unVolumeBtn.png",
+            "Released": "volumeBtn.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textScore",
+            "X": 28,
+            "Y": 8,
+            "Width": 65,
+            "Height": 18,
+            "TextId": "__SingleUse_VJ9L",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "homeBtn"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "North",
+              "ActionComponent": "HomeScreen"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "replayBtn"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "North",
+              "ActionComponent": "GameOverScreen"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "GameOverScreen",
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "gameoverBackground",
+            "Width": 240,
+            "Height": 320,
+            "RelativeFilename": "gameover.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "highScore",
+            "X": 137,
+            "Y": 127,
+            "Width": 48,
+            "Height": 25,
+            "TextId": "__SingleUse_W60E",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "Button",
+            "Name": "replayGameoverBtn",
+            "X": 40,
+            "Y": 255,
+            "Width": 160,
+            "Height": 45,
+            "Pressed": "replay-gameover - clicked.png",
+            "Released": "replay-gameover.png"
+          },
+          {
+            "Type": "Button",
+            "Name": "homeGameoverBtn",
+            "X": 40,
+            "Y": 190,
+            "Width": 160,
+            "Height": 44,
+            "Pressed": "home-gameover-clicked.png",
+            "Released": "home-gameover.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "score",
+            "X": 137,
+            "Y": 93,
+            "Width": 32,
+            "Height": 25,
+            "TextId": "__SingleUse_BLFH",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "replayGameoverBtn"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "North",
+              "ActionComponent": "GamePlayScreen"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "homeGameoverBtn"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "North",
+              "ActionComponent": "HomeScreen"
+            }
+          }
+        ]
+      }
+    ],
+    "CustomContainerDefinitions": [],
+    "Name": "projectNhung3",
+    "Resolution": {
+      "Width": 240,
+      "Height": 320
+    },
+    "SelectedColorDepth": 16,
+    "StartupScreenName": "GameOverScreen",
+    "SelectedStartupLanguage": "GB",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "UIPath": ".",
+    "AvailableColorDepths": [
+      16
+    ],
+    "AvailableLCDs": {
+      "16": "LCD16bpp"
+    },
+    "AvailableSections": [
+      "ExtFlashSection",
+      "IntFlashSection"
+    ],
+    "AvailableResolutions": [
+      {
+        "Width": 240,
+        "Height": 320
+      }
+    ],
+    "PhysicalButtons": [],
+    "FrameworkFeatures": {
+      "LCD16bpp": {
+        "Id": "LCD16bpp",
+        "IsEnabled": true
+      }
+    },
+    "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "CompileTargetCommandOverride": "make -f ../gcc/Makefile -j8",
+    "FlashTargetCommandOverride": "make -f ../gcc/Makefile flash",
+    "LandscapeSkinX": 0,
+    "LandscapeSkinY": 0,
+    "PortraitSkinX": 0,
+    "PortraitSkinY": 0,
+    "DisplayOrientation": "Portrait",
+    "Family": "STM32F4",
+    "SubFamily": "STM32F429/439",
+    "Toolchain": "STM32CubeIDE",
+    "Platform": "m4",
+    "ProjectFile": "../STM32F429I_DISCO_REV_D01.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [],
+    "AdditionalFeatures": [
+      "CWRVector",
+      "VectorFonts"
+    ]
+  },
+  "Version": "4.25.0",
+  "CreatedBy": "4.25.0"
+}
