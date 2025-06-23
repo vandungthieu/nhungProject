@@ -112,7 +112,7 @@
             "AutoSize": true,
             "Wildcard1": {
               "UseBuffer": true,
-              "BufferSize": 20
+              "BufferSize": 10
             }
           }
         ],

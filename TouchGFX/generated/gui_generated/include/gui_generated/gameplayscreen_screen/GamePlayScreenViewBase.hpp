@@ -39,7 +39,7 @@ protected:
     /*
      * Wildcard Buffers
      */
-    static const uint16_t TEXTSCORE_SIZE = 20;
+    static const uint16_t TEXTSCORE_SIZE = 10;
     touchgfx::Unicode::UnicodeChar textScoreBuffer[TEXTSCORE_SIZE];
 
 private:
