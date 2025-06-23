@@ -58,42 +58,6 @@
             "RelativeFilename": "rope.png"
           },
           {
-            "Type": "Image",
-            "Name": "egg1",
-            "X": 110,
-            "Y": 245,
-            "Width": 20,
-            "Height": 21,
-            "RelativeFilename": "egg1.png"
-          },
-          {
-            "Type": "Image",
-            "Name": "egg2",
-            "X": 60,
-            "Y": 275,
-            "Width": 20,
-            "Height": 21,
-            "RelativeFilename": "egg2.png"
-          },
-          {
-            "Type": "Image",
-            "Name": "egg3",
-            "X": 60,
-            "Y": 275,
-            "Width": 20,
-            "Height": 21,
-            "RelativeFilename": "egg3.png"
-          },
-          {
-            "Type": "Image",
-            "Name": "egg4",
-            "X": 60,
-            "Y": 275,
-            "Width": 20,
-            "Height": 21,
-            "RelativeFilename": "egg4.png"
-          },
-          {
             "Type": "Button",
             "Name": "homeBtn",
             "X": 194,
@@ -134,10 +98,10 @@
           {
             "Type": "TextArea",
             "Name": "textScore",
-            "X": 28,
-            "Y": 8,
-            "Width": 65,
-            "Height": 18,
+            "X": 29,
+            "Y": 13,
+            "Width": 37,
+            "Height": 10,
             "TextId": "__SingleUse_VJ9L",
             "TextRotation": "0",
             "Color": {
@@ -145,7 +109,11 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
           }
         ],
         "Interactions": [

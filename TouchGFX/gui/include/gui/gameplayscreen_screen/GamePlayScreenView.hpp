@@ -74,10 +74,11 @@ private:
     const int fallTickDelay = 2;  // Rơi 1 pixel mỗi 2 tick (30px/s)
 
     int score = 0;  // Tổng điểm
+    //Unicode::UnicodeChar scoreBuffer[20]; // đủ để hiển thị "Score: 99999"
+    void updateScoreDisplay();  // Cập nhật điểm lên UI
 
     void checkAndClearMatchingEggs(int row, int col);
     int countMatchingDirection(int row, int col, int dRow, int dCol);
-   // void updateScoreDisplay();  // Cập nhật điểm lên UI
 
 
 

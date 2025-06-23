@@ -8,9 +8,13 @@
 #include "stm32f4xx_hal.h"
 
 
+extern "C" {
+#include "buzzer.h"
+}
 extern osMessageQueueId_t buttonQueueHandle;
 extern osMessageQueueId_t shootQueueHandle;
-extern void SendChar(char c);
+extern RNG_HandleTypeDef hrng;
+extern osMessageQueueId_t buzzerQueueHandle ;
 
 const int GamePlayScreenView::eggSequence[] = {0, 1, 2, 3, 2, 0, 1, 3};
 const int GamePlayScreenView::EGG_SEQ_SIZE = sizeof(GamePlayScreenView::eggSequence) / sizeof(int);
@@ -28,6 +32,8 @@ void GamePlayScreenView::setupScreen()
     GamePlayScreenViewBase::setupScreen();
 
     //testMoveRowDown();
+    score = 99;
+    updateScoreDisplay();
 
    //srand(HAL_GetTick());
 
@@ -113,34 +119,43 @@ void GamePlayScreenView::initializeEggs()
 void GamePlayScreenView::initializeEggGrid()
 {
     const touchgfx::BitmapId eggBitmaps[] = {
-        BITMAP_EGG1_ID, // = 3
-        BITMAP_EGG2_ID, // = 4
-        BITMAP_EGG3_ID, // = 5
-        BITMAP_EGG4_ID  // = 6
+        BITMAP_EGG1_ID,
+        BITMAP_EGG2_ID,
+        BITMAP_EGG3_ID,
+        BITMAP_EGG4_ID
     };
 
     int eggWidth = 20;
     int eggHeight = 21;
     int padding = 0;
 
-    int startX = 0; // Tọa độ bắt đầu vẽ lưới
+    int startX = 0;
     int startY = 0;
 
     for (int row = 0; row < ROWS; ++row)
     {
         for (int col = 0; col < COLS; ++col)
         {
-            int eggType = eggMap[row][col]; // từ 0 đến 3
+            uint32_t randNumber = 0;
+            if (HAL_RNG_GenerateRandomNumber(&hrng, &randNumber) == HAL_OK)
+            {
+                int eggType = randNumber % 4;
+                eggMap[row][col] = eggType;
 
-            eggGrid[row][col].setBitmap(touchgfx::Bitmap(eggBitmaps[eggType]));
-            eggGrid[row][col].setXY(startX + col * (eggWidth + padding),
-                                    startY + row * (eggHeight + padding));
-            eggGrid[row][col].setVisible(true);
-            eggContainer.add(eggGrid[row][col]);
+                eggGrid[row][col].setBitmap(touchgfx::Bitmap(eggBitmaps[eggType]));
+                eggGrid[row][col].setXY(startX + col * (eggWidth + padding),
+                                        startY + row * (eggHeight + padding));
+                eggGrid[row][col].setVisible(true);
+                eggContainer.add(eggGrid[row][col]);
+            }
+            else
+            {
+                // Nếu RNG lỗi, fallback về 0
+                eggMap[row][col] = 0;
+            }
         }
     }
 }
-
 
 void GamePlayScreenView::pushEggGridDown()
 {
@@ -340,11 +355,22 @@ void GamePlayScreenView::checkAndClearMatchingEggs(int row, int col)
 
             // Ghi điểm
             score += count * 10;
-            //updateScoreDisplay();
-            return; // Nếu xóa rồi thì không kiểm tra các hướng khác nữa
+            updateScoreDisplay();
+            return;
         }
     }
 }
+
+// cập nhật giao diện
+void GamePlayScreenView::updateScoreDisplay()
+{
+	 Unicode::snprintf(textScoreBuffer, sizeof(textScoreBuffer) / sizeof(Unicode::UnicodeChar), "%d", score);
+	 textScore.invalidate();            // Xóa hiển thị cũ
+	 textScore.setWildcard(textScoreBuffer);
+	 textScore.invalidate();            // Hiển thị lại
+}
+
+
 
 // đếm trứng giống nhau theo hướng
 int GamePlayScreenView::countMatchingDirection(int row, int col, int dRow, int dCol)
@@ -539,6 +565,7 @@ void GamePlayScreenView::handleTickEvent()
 	        }
 	        else if (direction == 'B' && !handledShoot) {
 	            shoot();
+	            playBeep(100);
 	            handledShoot = true;
 	            if(!isStart){
 	            	//testMoveRowDown();

@@ -14,12 +14,12 @@
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/MoveAnimator.hpp:37:7:touchgfx::MoveAnimator<touchgfx::Image>::~MoveAnimator()	1
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:touchgfx::Callback<GamePlayScreenView, const touchgfx::MoveAnimator<touchgfx::Image>&>::~Callback()	1
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:73:6:virtual void GamePlayScreenView::tearDownScreen()	1
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:79:6:virtual void GamePlayScreenView::tearDownScreen()	1
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:386:18:void touchgfx::Callback<dest_type, T1, void, void>::execute(T1) [with dest_type = GamePlayScreenView; T1 = const touchgfx::MoveAnimator<touchgfx::Image>&]	2
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:396:18:bool touchgfx::Callback<dest_type, T1, void, void>::isValid() const [with dest_type = GamePlayScreenView; T1 = const touchgfx::MoveAnimator<touchgfx::Image>&]	3
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/MoveAnimator.hpp:88:18:void touchgfx::MoveAnimator<T>::setMoveAnimationDelay(uint16_t) [with T = touchgfx::Image]	1
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/MoveAnimator.hpp:100:22:uint16_t touchgfx::MoveAnimator<T>::getMoveAnimationDelay() const [with T = touchgfx::Image]	1
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:416:6:void GamePlayScreenView::onShootEggEnded(const touchgfx::MoveAnimator<touchgfx::Image>&)	1
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:442:6:void GamePlayScreenView::onShootEggEnded(const touchgfx::MoveAnimator<touchgfx::Image>&)	1
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/MoveAnimator.hpp:37:7:virtual touchgfx::MoveAnimator<touchgfx::Image>::~MoveAnimator()	1
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:virtual touchgfx::Callback<GamePlayScreenView, const touchgfx::MoveAnimator<touchgfx::Image>&>::~Callback()	1
 ../../TouchGFX/gui/include/gui/gameplayscreen_screen/GamePlayScreenView.hpp:16:13:GamePlayScreenView::~GamePlayScreenView()	2
@@ -30,20 +30,21 @@ D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/Ga
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Bitmap.hpp:146:14:touchgfx::BitmapId touchgfx::Bitmap::getId() const	1
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:343:10:void touchgfx::Drawable::setXY(int16_t, int16_t)	1
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextureMapper.hpp:160:18:virtual void touchgfx::TextureMapper::setZAngle(float)	1
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:80:6:void GamePlayScreenView::initializeEggs()	1
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:113:6:void GamePlayScreenView::initializeEggGrid()	3
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:145:6:void GamePlayScreenView::pushEggGridDown()	1
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:180:6:void GamePlayScreenView::shoot()	1
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:259:6:bool GamePlayScreenView::checkCollision(const touchgfx::Image&, const touchgfx::Image&)	4
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:350:5:int GamePlayScreenView::countMatchingDirection(int, int, int, int)	5
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:293:6:void GamePlayScreenView::checkAndClearMatchingEggs(int, int)	10
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:269:6:void GamePlayScreenView::attachEggToGrid(int, int)	5
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:222:6:void GamePlayScreenView::handleShootEggCollision()	9
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:427:6:virtual void GamePlayScreenView::handleTickEvent()	22
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:371:6:void GamePlayScreenView::addTopRowEggs()	4
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:86:6:void GamePlayScreenView::initializeEggs()	1
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:119:6:void GamePlayScreenView::initializeEggGrid()	4
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:160:6:void GamePlayScreenView::pushEggGridDown()	1
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:195:6:void GamePlayScreenView::shoot()	1
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:274:6:bool GamePlayScreenView::checkCollision(const touchgfx::Image&, const touchgfx::Image&)	4
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:365:6:void GamePlayScreenView::updateScoreDisplay()	1
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:376:5:int GamePlayScreenView::countMatchingDirection(int, int, int, int)	5
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:308:6:void GamePlayScreenView::checkAndClearMatchingEggs(int, int)	10
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:284:6:void GamePlayScreenView::attachEggToGrid(int, int)	5
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:237:6:void GamePlayScreenView::handleShootEggCollision()	9
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:453:6:virtual void GamePlayScreenView::handleTickEvent()	22
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:397:6:void GamePlayScreenView::addTopRowEggs()	4
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/MoveAnimator.hpp:40:5:touchgfx::MoveAnimator<T>::MoveAnimator() [with T = touchgfx::Image]	1
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:19:1:GamePlayScreenView::GamePlayScreenView()	3
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:23:1:GamePlayScreenView::GamePlayScreenView()	3
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/MoveAnimator.hpp:177:10:void touchgfx::MoveAnimator<T>::nextMoveAnimationStep() [with T = touchgfx::Image]	6
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/mixins/MoveAnimator.hpp:169:18:void touchgfx::MoveAnimator<T>::handleTickEvent() [with T = touchgfx::Image]	1
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:154:6:void GamePlayScreenView::onRowFallStep(const touchgfx::MoveAnimator<touchgfx::Image>&)	4
-D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:26:6:virtual void GamePlayScreenView::setupScreen()	1
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:169:6:void GamePlayScreenView::onRowFallStep(const touchgfx::MoveAnimator<touchgfx::Image>&)	4
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenView.cpp:30:6:virtual void GamePlayScreenView::setupScreen()	1

@@ -62,6 +62,7 @@ Application/User/generated/FrontendApplicationBase.o: \
  ../../TouchGFX/gui/include/gui/gameplayscreen_screen/GamePlayScreenView.hpp \
  ../../TouchGFX/generated/gui_generated/include/gui_generated/gameplayscreen_screen/GamePlayScreenViewBase.hpp \
  ../../TouchGFX/gui/include/gui/gameplayscreen_screen/GamePlayScreenPresenter.hpp \
+ ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
  ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp \
@@ -136,6 +137,7 @@ Application/User/generated/FrontendApplicationBase.o: \
 ../../TouchGFX/gui/include/gui/gameplayscreen_screen/GamePlayScreenView.hpp:
 ../../TouchGFX/generated/gui_generated/include/gui_generated/gameplayscreen_screen/GamePlayScreenViewBase.hpp:
 ../../TouchGFX/gui/include/gui/gameplayscreen_screen/GamePlayScreenPresenter.hpp:
+../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:
 ../../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp:

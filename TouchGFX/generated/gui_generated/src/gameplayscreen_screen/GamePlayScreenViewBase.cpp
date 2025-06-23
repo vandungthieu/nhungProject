@@ -21,22 +21,6 @@ GamePlayScreenViewBase::GamePlayScreenViewBase() :
     role.setBitmap(touchgfx::Bitmap(BITMAP_ROPE_ID));
     add(role);
 
-    egg1.setXY(110, 245);
-    egg1.setBitmap(touchgfx::Bitmap(BITMAP_EGG1_ID));
-    add(egg1);
-
-    egg2.setXY(60, 275);
-    egg2.setBitmap(touchgfx::Bitmap(BITMAP_EGG2_ID));
-    add(egg2);
-
-    egg3.setXY(60, 275);
-    egg3.setBitmap(touchgfx::Bitmap(BITMAP_EGG3_ID));
-    add(egg3);
-
-    egg4.setXY(60, 275);
-    egg4.setBitmap(touchgfx::Bitmap(BITMAP_EGG4_ID));
-    add(egg4);
-
     homeBtn.setXY(194, 0);
     homeBtn.setBitmaps(touchgfx::Bitmap(BITMAP_HOMEBTN_ID), touchgfx::Bitmap(BITMAP_HOMEBTN_ID));
     homeBtn.setAction(buttonCallback);
@@ -55,9 +39,12 @@ GamePlayScreenViewBase::GamePlayScreenViewBase() :
     volumeBtn.setBitmaps(touchgfx::Bitmap(BITMAP_VOLUMEBTN_ID), touchgfx::Bitmap(BITMAP_UNVOLUMEBTN_ID));
     add(volumeBtn);
 
-    textScore.setXY(28, 8);
+    textScore.setXY(29, 13);
     textScore.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     textScore.setLinespacing(0);
+    textScoreBuffer[0] = 0;
+    textScore.setWildcard(textScoreBuffer);
+    textScore.resizeToCurrentText();
     textScore.setTypedText(touchgfx::TypedText(T___SINGLEUSE_VJ9L));
     add(textScore);
 }

@@ -37,7 +37,12 @@
 /* USER CODE BEGIN PD */
 #define REFRESH_COUNT           ((uint32_t)1386)   /* SDRAM refresh counter */
 #define SDRAM_TIMEOUT           ((uint32_t)0xFFFF)
+#define BUZZER_PORT GPIOA
+#define BUZZER_PIN GPIO_PIN_7
 
+typedef struct {
+    uint16_t duration_ms;
+} BuzzerCommand;
 /**
   * @brief  FMC SDRAM Mode definition register defines
   */
@@ -69,6 +74,8 @@ DMA2D_HandleTypeDef hdma2d;
 I2C_HandleTypeDef hi2c3;
 
 LTDC_HandleTypeDef hltdc;
+
+RNG_HandleTypeDef hrng;
 
 SPI_HandleTypeDef hspi5;
 
@@ -103,6 +110,7 @@ uint8_t isRevD = 0; /* Applicable only for STM32F429I DISCOVERY REVD and above *
 osMessageQueueId_t joystickQueueHandle;
 osMessageQueueId_t buttonQueueHandle;
 osMessageQueueId_t shootQueueHandle;
+osMessageQueueId_t buzzerQueueHandle;
 
 const osMessageQueueAttr_t joystickQueue_attributes = {
   .name = "joystickQueue"
@@ -116,6 +124,10 @@ const osMessageQueueAttr_t shootQueueHandle_attributes = {
   .name = "shootQueue"
 };
 
+
+const osMessageQueueAttr_t buzzerQueue_attributes = {
+    .name = "buzzerQueue"
+};
 
 
 
@@ -131,6 +143,7 @@ static void MX_FMC_Init(void);
 static void MX_LTDC_Init(void);
 static void MX_DMA2D_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_RNG_Init(void);
 void StartDefaultTask(void *argument);
 extern void TouchGFX_Task(void *argument);
 void StartShootTask(void *argument);
@@ -194,6 +207,8 @@ int main(void)
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
+  Buzzer_Init();
+
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -214,12 +229,11 @@ int main(void)
   MX_LTDC_Init();
   MX_DMA2D_Init();
   MX_USART1_UART_Init();
-
+  MX_RNG_Init();
+  /* USER CODE BEGIN 2 */
   MX_TouchGFX_Init();
      /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
-  /* USER CODE BEGIN 2 */
-
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -243,8 +257,7 @@ int main(void)
   joystickQueueHandle = osMessageQueueNew(1, sizeof(uint16_t), NULL);
   buttonQueueHandle = osMessageQueueNew(10, sizeof(uint8_t), NULL);
   shootQueueHandle = osMessageQueueNew(8, sizeof(uint8_t), NULL); // 8 phần tử, mỗi phần 1 byte
-
-
+  buzzerQueueHandle = osMessageQueueNew(8, sizeof(BuzzerCommand), NULL);
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
@@ -303,10 +316,10 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 360;
+  RCC_OscInitStruct.PLL.PLLM = 4;
+  RCC_OscInitStruct.PLL.PLLN = 180;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 8;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -509,6 +522,32 @@ static void MX_LTDC_Init(void)
 
   LcdDrv->DisplayOff();
   /* USER CODE END LTDC_Init 2 */
+
+}
+
+/**
+  * @brief RNG Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_RNG_Init(void)
+{
+
+  /* USER CODE BEGIN RNG_Init 0 */
+
+  /* USER CODE END RNG_Init 0 */
+
+  /* USER CODE BEGIN RNG_Init 1 */
+
+  /* USER CODE END RNG_Init 1 */
+  hrng.Instance = RNG;
+  if (HAL_RNG_Init(&hrng) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN RNG_Init 2 */
+
+  /* USER CODE END RNG_Init 2 */
 
 }
 
@@ -1106,15 +1145,6 @@ void StartDefaultTask(void *argument)
 	        	            SendChar('B');
 	        	        }
 
-//	            // Debounce: chờ 20–50ms rồi kiểm tra lại
-//	            HAL_Delay(30);  // hoặc osDelay(30);
-//	            if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5) == GPIO_PIN_RESET)
-//	            {
-//	                uint8_t cmd = 'B';
-//	                osMessageQueuePut(buttonQueueHandle, &cmd, 0, 0);
-//	                SendChar('B');
-//	            }
-//	        }
 	        lastPC4 = currentPC4;
 	        lastPC5 = currentPC5;
 	        lastPA5 = currentPA5;
@@ -1137,21 +1167,16 @@ void StartShootTask(void *argument)
 {
   /* USER CODE BEGIN StartShootTask */
   /* Infinite loop */
-	uint8_t lastPG2 = 1; // Trạng thái trước, mặc định HIGH (PULLUP)
+	 BuzzerCommand cmd;
 
-	for (;;)
-	{
-		uint8_t currentPG2 = HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_2);
-
-	    if (currentPG2 == GPIO_PIN_RESET && lastPG2 == GPIO_PIN_SET)
+	    for (;;)
 	    {
-	        uint8_t cmd = 'S';
-	        osMessageQueuePut(buttonQueueHandle, &cmd, 0, 0); // gửi vào hàng đợi
-	    }
-
-	    lastPG2 = currentPG2;
-	    osDelay(30); // chống dội nút (debounce)
-
+	        if (osMessageQueueGet(buzzerQueueHandle, &cmd, NULL, osWaitForever) == osOK)
+	        {
+	            HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_RESET);
+	            HAL_Delay(cmd.duration_ms);
+	            HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_SET);
+	        }
 	    }
   /* USER CODE END StartShootTask */
 }

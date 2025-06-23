@@ -13,18 +13,18 @@ class FlashDataReader;
 
 struct Typography
 {
-    static const touchgfx::FontId DEFAULT = 0;
-    static const touchgfx::FontId LARGE = 1;
-    static const touchgfx::FontId SMALL = 2;
-    static const touchgfx::FontId TYPOGRAPHY_00 = 3;
+    static const touchgfx::FontId LARGE = 0;
+    static const touchgfx::FontId SMALL = 1;
+    static const touchgfx::FontId TYPOGRAPHY_00 = 2;
+    static const touchgfx::FontId TYPOGRAPHY_01 = 3;
 };
 
 struct TypographyFontIndex
 {
-    static const touchgfx::FontId DEFAULT = 0;       // verdana_18_4bpp
-    static const touchgfx::FontId LARGE = 1;         // verdana_40_4bpp
-    static const touchgfx::FontId SMALL = 2;         // verdana_10_4bpp
-    static const touchgfx::FontId TYPOGRAPHY_00 = 3; // verdana_25_4bpp
+    static const touchgfx::FontId LARGE = 0;         // verdana_40_4bpp
+    static const touchgfx::FontId SMALL = 1;         // verdana_10_4bpp
+    static const touchgfx::FontId TYPOGRAPHY_00 = 2; // verdana_25_4bpp
+    static const touchgfx::FontId TYPOGRAPHY_01 = 3; // verdana_20_4bpp
     static const uint16_t NUMBER_OF_FONTS = 4;
 };
 

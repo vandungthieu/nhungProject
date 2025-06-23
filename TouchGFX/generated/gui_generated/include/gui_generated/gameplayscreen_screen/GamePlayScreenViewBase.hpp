@@ -10,7 +10,7 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/Button.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class GamePlayScreenViewBase : public touchgfx::View<GamePlayScreenPresenter>
 {
@@ -30,15 +30,17 @@ protected:
     touchgfx::Box __background;
     touchgfx::Image gamplayBackground;
     touchgfx::Image role;
-    touchgfx::Image egg1;
-    touchgfx::Image egg2;
-    touchgfx::Image egg3;
-    touchgfx::Image egg4;
     touchgfx::Button homeBtn;
     touchgfx::Button pauseBtn;
     touchgfx::Button replayBtn;
     touchgfx::Button volumeBtn;
-    touchgfx::TextArea textScore;
+    touchgfx::TextAreaWithOneWildcard textScore;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t TEXTSCORE_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar textScoreBuffer[TEXTSCORE_SIZE];
 
 private:
 
