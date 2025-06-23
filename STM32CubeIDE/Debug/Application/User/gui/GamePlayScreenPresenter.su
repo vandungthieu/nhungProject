@@ -1,5 +1,6 @@
 ../../TouchGFX/gui/include/gui/gameplayscreen_screen/GamePlayScreenPresenter.hpp:28:13:GamePlayScreenPresenter::~GamePlayScreenPresenter()	0	static
 D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenPresenter.cpp:10:6:virtual void GamePlayScreenPresenter::activate()	0	static
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenPresenter.cpp:15:6:virtual void GamePlayScreenPresenter::deactivate()	0	static
 ../../TouchGFX/gui/include/gui/gameplayscreen_screen/GamePlayScreenPresenter.hpp:28:13:virtual GamePlayScreenPresenter::~GamePlayScreenPresenter()	8	static
 ../../TouchGFX/gui/include/gui/gameplayscreen_screen/GamePlayScreenPresenter.hpp:28:13:virtual void* GamePlayScreenPresenter::_ZThn4_N23GamePlayScreenPresenterD1Ev()	0	static
 D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameplayscreen_screen/GamePlayScreenPresenter.cpp:4:1:GamePlayScreenPresenter::GamePlayScreenPresenter(GamePlayScreenView&)	0	static

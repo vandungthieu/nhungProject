@@ -17,18 +17,18 @@ public:
 
     virtual void changeToStartScreen()
     {
-        gotoGameOverScreenScreenNoTransition();
+        gotoHomeScreenScreenNoTransition();
     }
 
     // HomeScreen
+    void gotoHomeScreenScreenNoTransition();
+
     void gotoHomeScreenScreenSlideTransitionNorth();
 
     // GamePlayScreen
     void gotoGamePlayScreenScreenSlideTransitionNorth();
 
     // GameOverScreen
-    void gotoGameOverScreenScreenNoTransition();
-
     void gotoGameOverScreenScreenSlideTransitionNorth();
 
 protected:
@@ -37,14 +37,14 @@ protected:
     Model& model;
 
     // HomeScreen
+    void gotoHomeScreenScreenNoTransitionImpl();
+
     void gotoHomeScreenScreenSlideTransitionNorthImpl();
 
     // GamePlayScreen
     void gotoGamePlayScreenScreenSlideTransitionNorthImpl();
 
     // GameOverScreen
-    void gotoGameOverScreenScreenNoTransitionImpl();
-
     void gotoGameOverScreenScreenSlideTransitionNorthImpl();
 };
 

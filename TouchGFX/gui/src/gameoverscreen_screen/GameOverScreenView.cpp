@@ -14,3 +14,10 @@ void GameOverScreenView::tearDownScreen()
 {
     GameOverScreenViewBase::tearDownScreen();
 }
+
+void GameOverScreenView::setFinalScore(int score)
+{
+    Unicode::snprintf(scoreBuffer, SCORE_SIZE, "%d", score);
+    this->score.setWildcard(scoreBuffer);
+    this->score.invalidate();
+}

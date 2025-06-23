@@ -14,5 +14,5 @@ void GamePlayScreenPresenter::activate()
 
 void GamePlayScreenPresenter::deactivate()
 {
-
+	 model->setGameScore(view.getScore());
 }

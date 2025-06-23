@@ -4,8 +4,8 @@
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_verdana_25_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
-    {     0, 0x0031,  11,  18,  18,   3,  16,   0,   0, 0x00 },
-    {   108, 0x0032,  13,  18,  18,   2,  16,   0,   0, 0x00 },
+    {     0, 0x0030,  14,  18,  18,   1,  16,   0,   0, 0x00 },
+    {   126, 0x0031,  11,  18,  18,   3,  16,   0,   0, 0x00 },
     {   234, 0x0034,  15,  18,  18,   0,  16,   0,   0, 0x00 },
     {   378, 0x0035,  13,  18,  18,   2,  16,   0,   0, 0x00 },
     {   504, 0x003F,  12,  18,  18,   1,  14,   0,   0, 0x00 }

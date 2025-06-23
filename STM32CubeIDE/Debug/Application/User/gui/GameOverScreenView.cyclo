@@ -6,3 +6,4 @@ D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameoverscreen_screen/Ga
 ../../TouchGFX/gui/include/gui/gameoverscreen_screen/GameOverScreenView.hpp:11:13:virtual GameOverScreenView::~GameOverScreenView()	1
 D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameoverscreen_screen/GameOverScreenView.cpp:3:1:GameOverScreenView::GameOverScreenView()	1
 D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameoverscreen_screen/GameOverScreenView.cpp:8:6:virtual void GameOverScreenView::setupScreen()	1
+D:/App/TouchGFX/Projects/projectNhung3/TouchGFX/gui/src/gameoverscreen_screen/GameOverScreenView.cpp:18:6:void GameOverScreenView::setFinalScore(int)	1

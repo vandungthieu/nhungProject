@@ -14,8 +14,14 @@ public:
     }
 
     void tick();
+    void setGameScore(int s) { gameScore = s; }
+    int getGameScore() const { return gameScore; }
+
 protected:
     ModelListener* modelListener;
+
+private:
+    int gameScore = 0;
 };
 
 #endif // MODEL_HPP

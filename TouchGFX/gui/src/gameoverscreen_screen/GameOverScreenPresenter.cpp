@@ -9,7 +9,7 @@ GameOverScreenPresenter::GameOverScreenPresenter(GameOverScreenView& v)
 
 void GameOverScreenPresenter::activate()
 {
-
+	 view.setFinalScore(model->getGameScore());
 }
 
 void GameOverScreenPresenter::deactivate()

@@ -100,7 +100,7 @@
             "Name": "textScore",
             "X": 29,
             "Y": 13,
-            "Width": 37,
+            "Width": 43,
             "Height": 10,
             "TextId": "__SingleUse_VJ9L",
             "TextRotation": "0",
@@ -194,14 +194,18 @@
             "Name": "score",
             "X": 137,
             "Y": 93,
-            "Width": 32,
+            "Width": 16,
             "Height": 25,
             "TextId": "__SingleUse_BLFH",
             "TextRotation": "0",
             "Color": {
               "Red": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {
+              "UseBuffer": true,
+              "BufferSize": 20
+            }
           }
         ],
         "Interactions": [
@@ -241,7 +245,7 @@
       "Height": 320
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "GameOverScreen",
+    "StartupScreenName": "HomeScreen",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

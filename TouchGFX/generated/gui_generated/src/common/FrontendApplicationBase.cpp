@@ -37,6 +37,17 @@ FrontendApplicationBase::FrontendApplicationBase(Model& m, FrontendHeap& heap)
 
 // HomeScreen
 
+void FrontendApplicationBase::gotoHomeScreenScreenNoTransition()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoHomeScreenScreenNoTransitionImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoHomeScreenScreenNoTransitionImpl()
+{
+    touchgfx::makeTransition<HomeScreenView, HomeScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
 void FrontendApplicationBase::gotoHomeScreenScreenSlideTransitionNorth()
 {
     transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoHomeScreenScreenSlideTransitionNorthImpl);
@@ -62,17 +73,6 @@ void FrontendApplicationBase::gotoGamePlayScreenScreenSlideTransitionNorthImpl()
 }
 
 // GameOverScreen
-
-void FrontendApplicationBase::gotoGameOverScreenScreenNoTransition()
-{
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoGameOverScreenScreenNoTransitionImpl);
-    pendingScreenTransitionCallback = &transitionCallback;
-}
-
-void FrontendApplicationBase::gotoGameOverScreenScreenNoTransitionImpl()
-{
-    touchgfx::makeTransition<GameOverScreenView, GameOverScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
-}
 
 void FrontendApplicationBase::gotoGameOverScreenScreenSlideTransitionNorth()
 {

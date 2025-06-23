@@ -24,6 +24,7 @@ public:
     void updateJoystick(uint16_t value);
     float currentAngle = 0.0f;
 
+    int getScore() const { return score; }
 
     // ghi đè handleTickEvent()
     virtual void handleTickEvent();
@@ -33,6 +34,8 @@ protected:
 
 private:
     static const int ROWS = 5;
+    static const int MAX_ROWS = 12;   // sức chứa tối đa
+    int currentRowCount = 5;
     static const int COLS = 10;
     static const int eggWidth = 20;
     static const int eggHeight = 21;
@@ -76,6 +79,11 @@ private:
     int score = 0;  // Tổng điểm
     //Unicode::UnicodeChar scoreBuffer[20]; // đủ để hiển thị "Score: 99999"
     void updateScoreDisplay();  // Cập nhật điểm lên UI
+
+    int shootCount = 0;  // số lượt bắn tích lũy
+    const int SHOOTS_PER_ROW = 3;  // cứ 3 lần bắn thì thêm 1 hàng
+
+
 
     void checkAndClearMatchingEggs(int row, int col);
     int countMatchingDirection(int row, int col, int dRow, int dCol);

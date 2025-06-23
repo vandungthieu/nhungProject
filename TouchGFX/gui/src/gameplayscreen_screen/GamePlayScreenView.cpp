@@ -163,6 +163,9 @@ void GamePlayScreenView::pushEggGridDown()
     currentFallGroup = 0;
     pixelsMoved = 0;
     isGroupedFalling = true;
+
+    eggContainer.invalidate();
+
 }
 
 
@@ -202,35 +205,38 @@ void GamePlayScreenView::shoot()
     shootEgg.setVisible(true);
     shootEgg.invalidate();
 
-    float angleRad = currentAngle *69 * 3.14f / 180.0f;
-    float speed = 4.0f; // tốc độ bay
+    float angleRad = currentAngle*68 * 3.14f / 180.0f;
+    float speed = 4.0f;
 
     shootDX = speed * sinf(angleRad);
-    shootDY = -speed * cosf(angleRad); // trục Y hướng xuống
+    shootDY = -speed * cosf(angleRad);
 
-    shooting = true; // bật trạng thái đang bắn
+    shooting = true;
 
-    // ===== TẠO BÓNG KẾ TIẾP (KHÔNG GỌI HÀM RIÊNG) =====
-        // Mảng ID các loại trứng
-        const touchgfx::BitmapId eggBitmaps[] = {
-            BITMAP_EGG1_ID,
-            BITMAP_EGG2_ID,
-            BITMAP_EGG3_ID,
-            BITMAP_EGG4_ID
-        };
+    // ===== TẠO TRỨNG KẾ TIẾP DÙNG RNG =====
+    const touchgfx::BitmapId eggBitmaps[] = {
+        BITMAP_EGG1_ID,
+        BITMAP_EGG2_ID,
+        BITMAP_EGG3_ID,
+        BITMAP_EGG4_ID
+    };
 
-        // Lấy chỉ số từ mảng định sẵn
-        int randIndex = eggSequence[eggSeqIndex];
-        eggSeqIndex = (eggSeqIndex + 1) % EGG_SEQ_SIZE;
+    uint32_t rnd = 0;
+    int randIndex = 0;
 
-        touchgfx::BitmapId selected = eggBitmaps[randIndex];
+    if (HAL_RNG_GenerateRandomNumber(&hrng, &rnd) == HAL_OK)
+    {
+        randIndex = rnd % 4;
+    }
 
-        nextEgg.setBitmap(touchgfx::Bitmap(selected));
-        nextEgg.setXY(90, 215);
-        nextEgg.setVisible(true);
-        nextEgg.invalidate();
+    touchgfx::BitmapId selected = eggBitmaps[randIndex];
 
+    nextEgg.setBitmap(touchgfx::Bitmap(selected));
+    nextEgg.setXY(90, 215);
+    nextEgg.setVisible(true);
+    nextEgg.invalidate();
 }
+
 
 
 // va chạm tường
@@ -251,7 +257,7 @@ void GamePlayScreenView::handleShootEggCollision()
     }
 
     // 3. Kiểm tra va trúng trứng khác trong lưới
-    for (int row = 0; row < ROWS; ++row) {
+    for (int row = 0; row < 10; ++row) {
         for (int col = 0; col < COLS; ++col) {
             if (!eggGrid[row][col].isVisible()) continue;
 
@@ -403,7 +409,7 @@ void GamePlayScreenView::addTopRowEggs()
         BITMAP_EGG4_ID
     };
 
-    // Dịch toàn bộ lưới xuống một dòng (từ dưới lên để tránh ghi đè)
+    // Dịch toàn bộ lưới xuống 1 hàng
     for (int row = ROWS - 1; row > 0; --row)
     {
         for (int col = 0; col < COLS; ++col)
@@ -418,23 +424,32 @@ void GamePlayScreenView::addTopRowEggs()
         }
     }
 
-    // Sinh hàng mới ở hàng 0 (trên cùng) bằng mảng định sẵn
+    // Thêm hàng mới ở hàng 0, không dùng animation
     for (int col = 0; col < COLS; ++col)
     {
-        int randIndex = eggSequence[eggSeqIndex];
-        eggSeqIndex = (eggSeqIndex + 1) % EGG_SEQ_SIZE;
+        uint32_t rnd = 0;
+        int randIndex = 0;
 
+        if (HAL_RNG_GenerateRandomNumber(&hrng, &rnd) == HAL_OK)
+        {
+            randIndex = rnd % 4;
+        }
+
+        // Lấy vị trí trứng hàng 1
+        int x = eggGrid[1][col].getX();
+        int y = eggGrid[1][col].getY() - 21;
+
+        // Đặt bitmap, vị trí và hiển thị ngay
         eggGrid[0][col].setBitmap(touchgfx::Bitmap(eggBitmaps[randIndex]));
-        eggGrid[0][col].setVisible(true);
-
-        // Đặt trứng hơi ra ngoài màn hình trên
-        int x = eggGrid[1][col].getX();         // dùng vị trí của hàng 1
-        int y = eggGrid[1][col].getY() - 21;    // cao hơn đúng 1 dòng
-
         eggGrid[0][col].setXY(x, y);
+        eggGrid[0][col].setVisible(true);
         eggGrid[0][col].invalidate();
+
+        // Cập nhật eggMap nếu có
+        eggMap[0][col] = randIndex;
     }
 }
+
 
 
 
@@ -567,13 +582,16 @@ void GamePlayScreenView::handleTickEvent()
 	            shoot();
 	            playBeep(100);
 	            handledShoot = true;
-	            if(!isStart){
-	            	//testMoveRowDown();
-	            	pushEggGridDown();
+	            pushEggGridDown();     // đẩy lưới xuống
 
-	            	isStart = false;
+	            shootCount++;
+	            if (shootCount >= SHOOTS_PER_ROW)
+	            {
+	                addTopRowEggs();       // thêm hàng mới
+	                shootCount = 0;        // reset lượt bắn
 	            }
 	        }
+
 
 
 

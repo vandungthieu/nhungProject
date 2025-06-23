@@ -11,6 +11,7 @@
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/Button.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class GameOverScreenViewBase : public touchgfx::View<GameOverScreenPresenter>
 {
@@ -32,7 +33,13 @@ protected:
     touchgfx::TextArea highScore;
     touchgfx::Button replayGameoverBtn;
     touchgfx::Button homeGameoverBtn;
-    touchgfx::TextArea score;
+    touchgfx::TextAreaWithOneWildcard score;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t SCORE_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar scoreBuffer[SCORE_SIZE];
 
 private:
 

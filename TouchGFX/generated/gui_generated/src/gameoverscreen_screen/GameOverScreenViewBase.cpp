@@ -36,6 +36,9 @@ GameOverScreenViewBase::GameOverScreenViewBase() :
     score.setXY(137, 93);
     score.setColor(touchgfx::Color::getColorFromRGB(255, 0, 0));
     score.setLinespacing(0);
+    scoreBuffer[0] = 0;
+    score.setWildcard(scoreBuffer);
+    score.resizeToCurrentText();
     score.setTypedText(touchgfx::TypedText(T___SINGLEUSE_BLFH));
     add(score);
 }
